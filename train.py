@@ -13,17 +13,16 @@ from dataset import CapchaDataset
 from model import CRNN
 
 
+model_save_path = "/mnt/tank/scratch/lsbitneva/ocr_itmo/checkpoints"
+
 gpu = torch.device("cuda")
 epochs = 5
 
 lstm_hidden_size = 256
-lstm_num_layers = 2
-cnn_output_height = 4
-cnn_output_width = 32
+lstm_num_layers = 1
+cnn_output_height = 1
+cnn_output_width = 7
 digits_per_sequence = 5
-
-model_save_path = "/mnt/tank/scratch/lsbitneva/ocr_itmo/checkpoints"
-
 
 def train_one_epoch(model, criterion, optimizer, data_loader) -> None:
     model.train()
@@ -136,15 +135,6 @@ def test_model(model, test_ds, number_of_test_imgs: int = 10):
         plt.gcf().text(x=0.1, y=0.2, s="Predicted: " + str(test_preds[j].numpy()))
         plt.savefig(f"/mnt/tank/scratch/lsbitneva/ocr_itmo/output/plot_{j}.png")
         # plt.show()
-
-gpu = torch.device("cuda")
-epochs = 5
-
-lstm_hidden_size = 256
-lstm_num_layers = 1
-cnn_output_height = 1
-cnn_output_width = 7
-digits_per_sequence = 5
 
 
 if __name__ == "__main__":

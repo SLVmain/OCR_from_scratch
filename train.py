@@ -146,7 +146,7 @@ if __name__ == "__main__":
     model = CRNN(
         cnn_output_height, lstm_hidden_size, lstm_num_layers, train_ds.num_classes
     ).to(gpu)
-    # model.load_state_dict(torch.load("./checkpoints/checkpoint_5.pt"))
+    model.load_state_dict(torch.load("/mnt/tank/scratch/lsbitneva/ocr_itmo/checkpoints/checkpoint_5.pt"))
 
     criterion = nn.CTCLoss(
         blank=train_ds.blank_label, reduction="mean", zero_infinity=True
@@ -154,12 +154,12 @@ if __name__ == "__main__":
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
     current_acc = 0
-    for epoch in range(1, epochs + 1):
-        print(f"Epoch: {epoch}/{epochs}")
-        train_one_epoch(model, criterion, optimizer, train_loader)
-        acc = evaluate(model, val_loader)
-        if acc > current_acc:
-            model_out_name = model_save_path + f"/checkpoint_{epoch}.pt"
-            torch.save(model.state_dict(), model_out_name)
+    # for epoch in range(1, epochs + 1):
+    #     print(f"Epoch: {epoch}/{epochs}")
+    #     train_one_epoch(model, criterion, optimizer, train_loader)
+    #     acc = evaluate(model, val_loader)
+    #     if acc > current_acc:
+    #         model_out_name = model_save_path + f"/checkpoint_{epoch}.pt"
+    #         torch.save(model.state_dict(), model_out_name)
 
     test_model(model, test_ds)

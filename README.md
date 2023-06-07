@@ -5,6 +5,9 @@
 
 Вывод процесса обучения с метриками в файле
 [slurm-1346.sh](https://github.com/SLVmain/OCR_from_scratch/blob/main/slurm-1346.out)
+
+![результат работы](https://github.com/SLVmain/OCR_from_scratch/blob/main/output/plot_9.png)
+
 Запуск проекта:
 1. Выполнить сборку образа
 ```
